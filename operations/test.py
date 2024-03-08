@@ -2,7 +2,6 @@
 import os
 import sys
 import cv2
-import time
 
 def save_image_with_updated_name(image_path, new_folder_path):
     if not os.path.exists(image_path):
@@ -18,7 +17,6 @@ def save_image_with_updated_name(image_path, new_folder_path):
 
 if __name__ == "__main__":
     path = os.path.join(os.getcwd(), "images")
-    time.sleep(5)
     imgPath = os.path.join(path, "input.jpg")
     # print(temp)
     save_image_with_updated_name(imgPath, path)
