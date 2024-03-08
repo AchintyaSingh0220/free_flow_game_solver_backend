@@ -4,6 +4,7 @@ const port = 5000
 const cors = require('cors')
 const multer = require('multer')
 const { spawn } = require('child_process');
+const path = require('path');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -22,8 +23,9 @@ app.use('/images', express.static('images'))
 app.post('/image', upload.single('file'), async (req, res) => {
   const inputPath = path.join(__dirname, '..', 'images', 'input.jpg');
   const outputDir = path.join(__dirname, '..', 'images', 'output');
+  const progPath = path.join(__dirname, 'operations', 'test.py');
 
-  const pythonProcess = spawn('python', ['process_image.py', inputPath, outputDir]);
+  const pythonProcess = spawn('python', [progPath, inputPath, outputDir]);
 
   await new Promise((resolve, reject) => {
     pythonProcess.on('close', (code) => {
