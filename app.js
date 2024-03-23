@@ -25,17 +25,18 @@ app.post('/image', upload.single('file'), async (req, res) => {
   const outputDir = path.join(__dirname, '..', 'images', 'output');
   const progPath = path.join(__dirname, 'operations', 'test.py');
 
-  const pythonProcess = spawn('python', [progPath, inputPath, outputDir]);
 
-  await new Promise((resolve, reject) => {
-    pythonProcess.on('close', (code) => {
-      if (code === 0) {
-        resolve();
-      } else {
-        reject(`Python script exited with code ${code}`);
-      }
+    const pythonProcess = spawn('python3', [progPath, inputPath, outputDir]);
+    
+    await new Promise((resolve, reject) => {
+      pythonProcess.on('close', (code) => {
+        if (code === 0) {
+          resolve();
+        } else {
+          reject(`Python script exited with code ${code}`);
+        }
+      });
     });
-  });
 
   res.json({})
 })
