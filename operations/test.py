@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 import os
 import sys
+
 import cv2
+
 
 def save_image_with_updated_name(image_path, new_folder_path):
     if not os.path.exists(image_path):
@@ -14,6 +16,7 @@ def save_image_with_updated_name(image_path, new_folder_path):
     cv2.imwrite(updated_image_path, img)
 
     print(f"Image saved as: {updated_image_path}")
+
 
 if __name__ == "__main__":
     path = os.path.join(os.getcwd(), "images")
